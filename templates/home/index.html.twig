@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+{% set root = app.current_route %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="card quote-of-the-day">
+            <div class="card-header">
+              Citation du jour / Quote of the day
+            </div>
+            <div class="card-body">
+              {{ quote }}
+            </div>
+          </div>
+        {% for i in 1..10 %}
+        <twig:Card title="Mon image #1" imgSrc="https://picsum.photos/seed/{{i}}/200" btnLink="/images/1" btnLabel="Cliquez ici">
+            <p>Ceci est le texte de mon contenu</p>
+            <p>En format <strong>HTML</strong></p>
+        </twig:Card>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

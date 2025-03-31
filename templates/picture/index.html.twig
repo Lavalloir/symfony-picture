@@ -9,12 +9,21 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Afficher toute mes photos</h1>
+    <h1>Afficher toutes mes photos</h1>
     {{ dump(picture)}}
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/clement.lavalloir/Desktop/symfony_pics/symfony_pics_mgmt/src/Controller/PictureController.php</code></li>
-        <li>Your template at <code>C:/Users/clement.lavalloir/Desktop/symfony_pics/symfony_pics_mgmt/templates/picture/index.html.twig</code></li>
-    </ul>
+    <twig:BootstrapButton path="{{ path('app_picture_create')}}" text="Ajouter une photo" type="success" />
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for pictures in picture %}
+            <div class="col mb-4">
+                <twig:BootstrapCard
+                title="{{ pictures.description }}"
+                imgSrc="{{ pictures.filename }}"
+                btnLink="{{ path('app_picture_show', {id:pictures.id}) }}"
+                btnLinkEdit="{{ path('app_picture_edit', {id:pictures.id}) }}"
+                btnLinkDelete="{{ path('app_picture_delete', {id:pictures.id}) }}"
+                />
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

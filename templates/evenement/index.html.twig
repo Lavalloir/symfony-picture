@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher toutes mes événements{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Afficher toutes mes événements</h1>
+
+    <twig:BootstrapButton path="{{ path('app_evenement_create')}}" text="Ajouter un événement" type="success" />
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for evenements in evenement %}
+            <div class="col mb-4">
+                <twig:BootstrapCard
+                title="{{ evenements.title }}"
+                imgSrc=""
+                btnLink="{{ path('app_evenement_show', {id:evenements.id}) }}"
+                btnLinkEdit="{{ path('app_evenement_edit', {id:evenements.id}) }}"
+                btnLinkDelete="{{ path('app_evenement_delete', {id:evenements.id}) }}"
+                />
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

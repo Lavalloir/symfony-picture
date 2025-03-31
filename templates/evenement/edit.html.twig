@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier evenement{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Modifier evenement</h1>
+    {{ form(formCreate) }}
+    
+    <twig:BootstrapButton path="{{ path('app_evenement')}}" text="Retour" type="success" />
+    {{ dump(request) }}
+</div>
+{% endblock %}

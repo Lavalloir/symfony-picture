@@ -13,8 +13,12 @@
     <body>
         {% include 'include/nav.html.twig' %}
         {% block body %}
-        {# {% include '/macros/card.html.twig' %} #}
         {% endblock %}
+        {% for flashtype, messages in app.flashes %}
+            {% for message in messages %}
+                <twig:BootstrapToast type="{{ flashtype }}" text="{{ message }}" />
+            {% endfor %}
+        {% endfor %}
         {% include 'include/footer.html.twig' %}
     </body>
 </html>

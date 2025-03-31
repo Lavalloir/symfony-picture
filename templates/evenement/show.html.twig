@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails d'un événement{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Détails d'un événement {{ evenement.id }}</h1>
+    <p>{{ evenement.pictures is null ? "Aucun" : evenement.pictures.filename }}</p>
+
+    <p>{{ evenement.title }}</p>
+    <twig:BootstrapButton path="{{ path('app_evenement')}}" text="Retour" type="success" />
+</div>
+{% endblock %}

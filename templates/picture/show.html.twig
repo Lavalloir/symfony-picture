@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une nouvelle photo{% endblock %}
+{% block title %}Détails d'une photo{% endblock %}
 
 {% block body %}
 <style>
@@ -9,9 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Ajouter une nouvelle photo</h1>
-    {{ form(formCreate) }}
+    <h1>Détails d'une photo {{ picture.id }}</h1>
+    <img src="{{ picture.filename }}" alt="{{ picture.filename }}">
+    <p>{{ picture.description }}</p>
+    <p>{{ picture.evenement is null ? "Aucun" : picture.event.title }}</p>
+
     <twig:BootstrapButton path="{{ path('app_picture')}}" text="Retour" type="success" />
-    {{ dump(request) }}
 </div>
 {% endblock %}

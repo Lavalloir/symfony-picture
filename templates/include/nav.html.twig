@@ -12,6 +12,12 @@
           {{ nav_link ('Voir photo', 'app_picture') }}
           {{ nav_link ('Ajouter photo', 'app_picture_create') }}
           {{ nav_link ('Voir événement', 'app_evenement') }}
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          {{ nav_link ('Deconnexion', 'app_logout') }}
+          {% else %}
+          {{ nav_link ('Inscription', 'app_register') }}
+          {{ nav_link ('Connexion', 'app_login') }}
+          {% endif %}
 
         </ul>
       </div>

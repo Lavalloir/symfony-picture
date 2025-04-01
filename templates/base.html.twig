@@ -12,8 +12,11 @@
     </head>
     <body>
         {% include 'include/nav.html.twig' %}
-        {% block body %}
-        {% endblock %}
+        <div class="container">
+
+            {% block body %}
+            {% endblock %}
+        </div>
         {% for flashtype, messages in app.flashes %}
             {% for message in messages %}
                 <twig:BootstrapToast type="{{ flashtype }}" text="{{ message }}" />

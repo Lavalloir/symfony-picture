@@ -9,6 +9,7 @@
     {{ form(formCreate) }}
     
     <twig:BootstrapButton path="{{ path('app_evenement')}}" text="Retour" type="success" />
-    {{ dump(request) }}
+    {# {{ dump(request) }} #}
+    {{ dump(evenement) }}
 </div>
 {% endblock %}

@@ -63,10 +63,6 @@ final class EvenementController extends AbstractController
     #[Route('/evenement/{id<\d+>}', name: 'app_evenement_show', methods: ['GET'])]
     public function show(Evenement $evenement): Response
     {
-        
-
-        
-        
 
         return $this->render('evenement/show.html.twig', [
             
@@ -88,12 +84,27 @@ final class EvenementController extends AbstractController
         $formEvenementEdit-> handleRequest($request);
 
         if ($formEvenementEdit->isSubmitted() && $formEvenementEdit->isValid()){
-    
-            // // Prépare les données a être enregistrer en basse
-            $entityManager->persist($evenement);
-    
-            // // Enregister les données en base, créer l'Id unique
-            $entityManager->flush();
+            /** @var PersistentCollection $arrPictures */
+            $arrPictures = $evenement->getPictures();
+
+            if($arrPictures->isDirty()){
+                $arrPicturesNotAnymore = $arrPictures->getDeleteDiff();
+                foreach($arrPicturesNotAnymore as $p){
+                    // Pour toutes les photo retirées, j'associe NULL à l'événement de ma photo
+                    $p->setEvenement(null);
+                }
+
+                $arrPicturesNewAssociated = $arrPictures->getInsertDiff();
+                foreach($arrPicturesNewAssociated as $p){
+                    // Pour toutes les photo retirées, j'associe NULL à l'événement de ma photo
+                    $p->setEvenement($evenement);
+                }
+
+
+                
+                // Enregister les données en base, créer l'Id unique
+                $entityManager->flush();
+            }
 
             $this->addFlash(
                 'success',

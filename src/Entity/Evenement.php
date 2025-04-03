@@ -28,6 +28,9 @@ class Evenement
     #[ORM\OneToMany(targetEntity: picture::class, mappedBy: 'evenement')]
     private Collection $pictures;
 
+    #[ORM\Column]
+    private ?int $evenement_user_id = null;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -88,6 +91,18 @@ class Evenement
                 $picture->setEvenement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEvenementUserId(): ?int
+    {
+        return $this->evenement_user_id;
+    }
+
+    public function setEvenementUserId(int $evenement_user_id): static
+    {
+        $this->evenement_user_id = $evenement_user_id;
 
         return $this;
     }

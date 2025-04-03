@@ -12,6 +12,7 @@
           {{ nav_link ('Voir photo', 'app_picture') }}
           {{ nav_link ('Ajouter photo', 'app_picture_create') }}
           {{ nav_link ('Voir événement', 'app_evenement') }}
+          {{ nav_link ('Utilisateur', 'app_user') }}
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           {{ nav_link ('Deconnexion', 'app_logout') }}
           {% else %}
